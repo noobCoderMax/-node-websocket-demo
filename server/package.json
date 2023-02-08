@@ -1,0 +1,17 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "websocket Vue3 chaT room",
+  "main": "index.js",
+  "author": "buffoon",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-ws": "^5.0.2",
+    "ws": "^8.12.0"
+  }
+}

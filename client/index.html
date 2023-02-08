@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <input type="text" placeholder="请输入消息" >
+  <button>发送</button>
+  <ul id="content"></ul>
+
+  <script type="text/javascript">
+    const input = document.querySelector('input')
+    const content = document.querySelector('#content')
+    const oSendBtn = document.querySelector('button')
+    const ws = new WebSocket("ws://localhost:5555")
+
+    const init = ()=>{
+      bindEvent()
+    }
+
+    const bindEvent = ()=>{
+      ws.addEventListener('open',handleOpen,false)
+      ws.addEventListener('close',handleClose,false)
+      ws.addEventListener('error',handleError,false)
+      ws.addEventListener('message',handleMessage,false)
+    }
+
+    const  handleOpen = ()=>{
+      console.log("webSocket open");
+    }
+
+    const  handleClose = ()=>{
+      console.log("webSocket close");
+    }
+    
+    const  handleError = ()=>{
+      console.log("webSocket error");
+    }
+    
+    const  handleMessage = (e)=>{
+      const li = document.createElement('li')
+      const node = document.createTextNode(e.data)
+      li.append(node)
+      content.append(li)
+    }
+
+    oSendBtn.addEventListener("click",function(e){
+        e.preventDefault()
+        if(!input.value||input.value === ''){
+          alert('消息不能为空')
+          return
+        }
+        ws.send(input.value)
+        input.value = ''
+      })
+      init()
+  </script>
+
+</body>
+</html>
