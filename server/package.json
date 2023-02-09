@@ -1,7 +1,7 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "websocket Vue3 chaT room",
+  "description": "websocket chaT room",
   "main": "index.js",
   "author": "buffoon",
   "license": "MIT",
